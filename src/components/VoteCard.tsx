@@ -26,35 +26,26 @@ const valueBgColors: Record<number, string> = {
 export function VoteCard({ displayName, value, isCurrentUser }: VoteCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.8, y: -20 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.2 }}
       className={cn(
-        'flex items-center justify-between p-3 rounded-xl border-2 transition-all',
+        'inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm',
         valueColors[value],
-        isCurrentUser && 'ring-2 ring-primary ring-offset-2'
+        isCurrentUser && 'ring-2 ring-primary ring-offset-1'
       )}
     >
-      <div className="flex items-center gap-3">
-        <div className={cn(
-          'w-10 h-10 rounded-full flex items-center justify-center text-white font-bold',
-          valueBgColors[value]
-        )}>
-          {displayName.charAt(0).toUpperCase()}
-        </div>
-        <span className="font-medium text-foreground">
-          {displayName}
-          {isCurrentUser && <span className="text-xs text-muted-foreground ml-2">(você)</span>}
-        </span>
-      </div>
       <div className={cn(
-        'w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold',
-        valueBgColors[value],
-        'text-white shadow-lg'
+        'w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold',
+        valueBgColors[value]
       )}>
         {value}
       </div>
+      <span className="font-medium text-foreground truncate max-w-[120px]">
+        {displayName}
+        {isCurrentUser && <span className="text-xs text-muted-foreground ml-1">(você)</span>}
+      </span>
     </motion.div>
   );
 }
