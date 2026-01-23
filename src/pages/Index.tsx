@@ -47,9 +47,9 @@ export default function Index() {
       
       <main className="container py-8">
         {activePoll ? (
-          <div className="grid gap-6 lg:grid-cols-3">
-            {/* Coluna da Enquete e Votação */}
-            <div className="lg:col-span-1 space-y-6">
+          <div className="space-y-6">
+            {/* Linha superior: Enquete + Votação + Resultado Consolidado */}
+            <div className="grid gap-6 lg:grid-cols-3">
               {/* Card da Enquete */}
               <Card className="border-primary/20 shadow-lg">
                 <CardHeader className="pb-3">
@@ -84,50 +84,44 @@ export default function Index() {
                 </CardContent>
               </Card>
 
-              {/* Card de Estatísticas */}
-              <Card className="shadow-lg">
+              {/* Card de Estatísticas - Destaque */}
+              <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background">
                 <CardContent className="pt-6">
                   <VoteStats voteStats={voteStats} totalVotes={totalVotes} />
                 </CardContent>
               </Card>
             </div>
 
-            {/* Mural de Votos */}
-            <div className="lg:col-span-2">
-              <Card className="shadow-lg h-full">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Vote className="w-5 h-5 text-primary" />
-                    Mural de Votos
-                  </CardTitle>
-                  <CardDescription>
-                    Votos atualizados em tempo real
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {votes.length > 0 ? (
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <AnimatePresence mode="popLayout">
-                        {votes.map((voteItem) => (
-                          <VoteCard
-                            key={voteItem.id}
-                            displayName={voteItem.display_name}
-                            value={voteItem.value}
-                            isCurrentUser={voteItem.user_id === user.id}
-                          />
-                        ))}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <div className="text-center py-12 text-muted-foreground">
-                      <Vote className="w-12 h-12 mx-auto mb-4 opacity-30" />
-                      <p>Nenhum voto ainda</p>
-                      <p className="text-sm">Seja o primeiro a votar!</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
+            {/* Mural de Votos - Mais discreto */}
+            <Card className="shadow-sm border-muted/50">
+              <CardHeader className="py-4">
+                <CardTitle className="flex items-center gap-2 text-base text-muted-foreground">
+                  <Vote className="w-4 h-4" />
+                  Mural de Votos
+                  <span className="text-xs font-normal ml-auto">Tempo real</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                {votes.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    <AnimatePresence mode="popLayout">
+                      {votes.map((voteItem) => (
+                        <VoteCard
+                          key={voteItem.id}
+                          displayName={voteItem.display_name}
+                          value={voteItem.value}
+                          isCurrentUser={voteItem.user_id === user.id}
+                        />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-muted-foreground text-sm">
+                    <p>Nenhum voto ainda. Seja o primeiro!</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
         ) : (
           <Card className="max-w-md mx-auto text-center py-12">
