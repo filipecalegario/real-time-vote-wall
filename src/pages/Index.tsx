@@ -48,42 +48,30 @@ export default function Index() {
       <main className="container py-8">
         {activePoll ? (
           <div className="space-y-6">
-            {/* Linha superior: Enquete + Votação */}
-            <div className="grid gap-6 md:grid-cols-2">
-              {/* Card da Enquete */}
-              <Card className="border-primary/20 shadow-lg">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-2 text-xs text-primary mb-2">
-                    <Clock className="w-3 h-3" />
-                    <span>Enquete Ativa</span>
-                  </div>
-                  <CardTitle className="text-xl">{activePoll.title}</CardTitle>
-                  {activePoll.description && (
-                    <CardDescription>{activePoll.description}</CardDescription>
-                  )}
-                </CardHeader>
-                <CardContent>
-                  <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
-                    <p className="text-lg font-medium text-center">
-                      "{activePoll.question}"
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Card de Votação */}
-              <Card className="shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-lg">Seu Voto</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <VotingButtons
-                    userVote={userVote}
-                    onVote={handleVote}
-                  />
-                </CardContent>
-              </Card>
-            </div>
+            {/* Card da Enquete + Votação */}
+            <Card className="border-primary/20 shadow-lg">
+              <CardHeader className="pb-3">
+                <div className="flex items-center gap-2 text-xs text-primary mb-2">
+                  <Clock className="w-3 h-3" />
+                  <span>Enquete Ativa</span>
+                </div>
+                <CardTitle className="text-xl">{activePoll.title}</CardTitle>
+                {activePoll.description && (
+                  <CardDescription>{activePoll.description}</CardDescription>
+                )}
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 bg-primary/5 rounded-xl border border-primary/10">
+                  <p className="text-lg font-medium text-center">
+                    "{activePoll.question}"
+                  </p>
+                </div>
+                <VotingButtons
+                  userVote={userVote}
+                  onVote={handleVote}
+                />
+              </CardContent>
+            </Card>
 
             {/* Card de Estatísticas - Destaque em largura total */}
             <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background">
