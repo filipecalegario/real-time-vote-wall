@@ -48,8 +48,8 @@ export default function Index() {
       <main className="container py-8">
         {activePoll ? (
           <div className="space-y-6">
-            {/* Linha superior: Enquete + Votação + Resultado Consolidado */}
-            <div className="grid gap-6 lg:grid-cols-3">
+            {/* Linha superior: Enquete + Votação */}
+            <div className="grid gap-6 md:grid-cols-2">
               {/* Card da Enquete */}
               <Card className="border-primary/20 shadow-lg">
                 <CardHeader className="pb-3">
@@ -83,14 +83,14 @@ export default function Index() {
                   />
                 </CardContent>
               </Card>
-
-              {/* Card de Estatísticas - Destaque */}
-              <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background">
-                <CardContent className="pt-6">
-                  <VoteStats voteStats={voteStats} totalVotes={totalVotes} />
-                </CardContent>
-              </Card>
             </div>
+
+            {/* Card de Estatísticas - Destaque em largura total */}
+            <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-br from-primary/5 to-background">
+              <CardContent className="pt-6">
+                <VoteStats voteStats={voteStats} totalVotes={totalVotes} />
+              </CardContent>
+            </Card>
 
             {/* Mural de Votos - Mais discreto */}
             <Card className="shadow-sm border-muted/50">

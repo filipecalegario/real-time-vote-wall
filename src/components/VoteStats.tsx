@@ -27,7 +27,7 @@ export function VoteStats({ voteStats, totalVotes }: VoteStatsProps) {
     <div className="space-y-3">
       <h3 className="font-semibold text-lg text-foreground mb-4">Resultado Consolidado</h3>
       
-      {[1, 2, 3, 4, 5].map((value) => {
+      {[5, 4, 3, 2, 1].map((value) => {
         const count = voteStats[value] || 0;
         const percentage = totalVotes > 0 ? (count / totalVotes) * 100 : 0;
         
