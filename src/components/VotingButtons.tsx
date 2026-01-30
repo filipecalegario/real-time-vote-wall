@@ -41,7 +41,7 @@ export function VotingButtons({ userVote, onVote, disabled }: VotingButtonsProps
             onClick={() => onVote(value)}
             disabled={disabled}
             className={cn(
-              'w-14 h-14 rounded-xl text-white font-bold text-xl transition-all',
+              'w-12 h-12 rounded-xl text-white font-bold text-lg transition-all',
               'shadow-lg disabled:opacity-50 disabled:cursor-not-allowed',
               valueBgColors[value],
               userVote === value && 'ring-4 ring-primary ring-offset-2 scale-110'
